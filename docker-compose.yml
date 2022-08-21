@@ -1,0 +1,28 @@
+version: '3.7'
+
+networks:
+  klimo-api:
+
+services:
+  php-apache-service:
+    build:
+      context: .
+      dockerfile: apache-config/Dockerfile
+    container_name: php81-apache-container
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - klimo-api
+
+  mysql-service:
+    container_name: mysql-container
+    build:
+      context: .
+      dockerfile: mysql/Dockerfile
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - klimo-api

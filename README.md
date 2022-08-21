@@ -17,6 +17,7 @@
 <h2>Instalacja</h2>
 Aby uruchomić projekt wystarczy wykonać komendy
 <pre> docker-compose build 
- docker-compose up -d </pre>
+ docker-compose up -d 
+ composer install</pre>
 
 Api będzie dostępne pod adresem <a href="http://klimo.com/api">klimo.com/api</a>

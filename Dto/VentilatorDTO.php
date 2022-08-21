@@ -103,6 +103,7 @@ class VentilatorDTO implements JsonSerializable
         $this->modeSetting = $modeSetting;
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         $vars = get_object_vars($this);

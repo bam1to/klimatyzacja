@@ -16,8 +16,11 @@ class Database
     public function __construct()
     {
         try {
+
             $this->connection = new PDO("mysql:dbname=" . DB_DATABASE_NAME . ";host=" . DB_HOST, DB_USERNAME, DB_PASSWORD);
-        } catch (PDOException) {
+        } catch (PDOException $e) {
+            print_r($e);
+            die;
             throw new Exception('Nie można się połączyć z bazą danych.');
         }
     }
