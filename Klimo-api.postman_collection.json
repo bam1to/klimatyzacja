@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "ceb28b64-f488-4fe3-bfe2-f864624f5b1c",
+		"name": "Klimo-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16207851"
+	},
+	"item": [
+		{
+			"name": "getVentilatorsList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}ventilators",
+					"host": [
+						"{{url}}ventilators"
+					]
+				},
+				"description": "Pobiera listę wszystkich klimo"
+			},
+			"response": []
+		},
+		{
+			"name": "getVentilatorById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}ventilator?id=1",
+					"host": [
+						"{{url}}ventilator"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Pobiera informacje o konkretnym klimo poprzez id"
+			},
+			"response": []
+		},
+		{
+			"name": "addNewVentilator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"status\": \"true\",\r\n        \"temperature\": \"12\",\r\n        \"power\": \"101\",\r\n        \"windingDirection\": \"down\",\r\n        \"modeSetting\": \"heat\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}ventilator",
+					"host": [
+						"{{url}}ventilator"
+					]
+				},
+				"description": "Żądanie dodawania nowego rekordu z klimo.\n\nPrzyjmuje dane JSON następnego formatu\n\n``` json\n{\n    \"ventilator\": {\n        \"status\": \"true\",\n        \"temperature\": \"12\",\n        \"power\": \"101\",\n        \"windingDirection\": \"down\",\n        \"modeSetting\": \"heat\"\n    }\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "switchVentilator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"id\" : \"2\",\r\n        \"status\": false\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}switch",
+					"host": [
+						"{{url}}switch"
+					]
+				},
+				"description": "Żądanie pozwala wyłączyć/włączyć klimo poprzez wysyłanie danych w formacie JSON\n\n``` json\n{\n    \"ventilator\": {\n        \"id\" : \"2\",\n        \"status\": false\n    }\n}\n\n```\n\nGdzie false - wyłączone, true - włączone"
+			},
+			"response": []
+		},
+		{
+			"name": "getTemperature",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}temperature?id=1",
+					"host": [
+						"{{url}}temperature"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Pobiera informację o temperaturze dla konkretnego klimo.\n\nPrzyjmuje id typu int"
+			},
+			"response": []
+		},
+		{
+			"name": "changeTemperature",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"id\": \"1\",\r\n        \"temperature\": \"100\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}temperature",
+					"host": [
+						"{{url}}temperature"
+					]
+				},
+				"description": "Żądanie zmiany temperatury dla konkretnego klimo\n\nPrzyjmuje dane w formacie JSON\n\n``` json\n{\n    \"ventilator\": {\n        \"id\": \"1\",\n        \"temperature\": \"100\"\n    }\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "getPower",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}power?id=1",
+					"host": [
+						"{{url}}power"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Zwraca dane o mocy klimo, przyjmuje GET request id typu int"
+			},
+			"response": []
+		},
+		{
+			"name": "changePower",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"id\": 1,\r\n        \"power\": 30\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}power",
+					"host": [
+						"{{url}}power"
+					]
+				},
+				"description": "Żądanie zmiany mocy.\n\nPrzyjmuje dane w formacie JSON,\n\n``` json\n {\n    \"ventilator\": {\n        \"id\": \"1\",\n        \"power\": \"value\"\n}\n}\n\n```\n\npower powinien być typu int"
+			},
+			"response": []
+		},
+		{
+			"name": "changeWindingDirection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"id\": \"1\",\r\n        \"windingDirection\": \"right\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}windingDirection",
+					"host": [
+						"{{url}}windingDirection"
+					]
+				},
+				"description": "StartFragment\n\nPrzyjmuje dane w formacie JSON, np:\n\nJSON\n\n```\n{\n  \"ventilator\": {\n    \"id\": \"1\",\n    \"windingDirection\": \"value\"\n  }\n}\n\n```\n\nW razie sukcesu zwraca pusty array.\n\nW razie próby zmiany na nieistniejącym wierszu zwraca pusty array\n\nPole `windingDirection`zyjmuje tylko następne wartości:\n\nStartFragment\n\n**Front, right, left, down, top**\n\nEndFragmentEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "changeModeSettings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ventilator\": {\r\n        \"id\": \"1\",\r\n        \"modeSettings\": \"auto\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}modeSettings",
+					"host": [
+						"{{url}}modeSettings"
+					]
+				},
+				"description": "Przyjmuje dane w formacie JSON, np:\n\n``` json\n{\n    \"ventilator\": {\n        \"id\": \"1\",\n        \"modeSettings\": \"value\"\n}\n}\n\n```\n\nW razie sukcesu zwraca pusty array.\n\nPole modeSettings przyjmuje tylko następne wartości:\n\n**cool, auto, heat, dry**"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "klimo.com/api/",
+			"type": "string"
+		}
+	]
+}
